@@ -3,7 +3,7 @@ class Rack::Tracker::GoogleTagManager < Rack::Tracker::Handler
   class Push < OpenStruct
 
     def write
-      "'#{event[:name]}': '#{event[:value]}'"
+      "'#{event[:name]}': #{event[:value].to_json}"
     end
 
     def event
