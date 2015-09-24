@@ -3,7 +3,11 @@ class Rack::Tracker::GoogleTagManager < Rack::Tracker::Handler
   class Push < OpenStruct
 
     def write
-      "'#{event[:name]}': #{event[:value].to_json}"
+      if event[:value].match(/":/).present?
+        "'#{event[:name]}': #{event[:value]}"
+      else
+        "'#{event[:name]}': '#{event[:value]}'"
+      end
     end
 
     def event
